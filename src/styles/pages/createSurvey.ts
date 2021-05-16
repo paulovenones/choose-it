@@ -42,4 +42,28 @@ export const Form = styled.form`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  align-items: center;
+
+  button {
+    margin: 0 auto;
+  }
+`;
+
+export const InputAndButtonWrapper = styled.div`
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  width: 70%;
+
+  button {
+    width: 30%;
+    margin-left: 12px;
+  }
+
+  input {
+    flex: 1;
+  }
 `;

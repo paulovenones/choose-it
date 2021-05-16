@@ -33,7 +33,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
   const collection = db.collection('surveys');
 
-  const surveyOptions = options.map(option => ({ title: option, votes: 0 }));
+  const surveyOptions = options.map((option) => ({ title: option, votes: 0 }));
 
   const survey = await collection.insertOne({
     title,

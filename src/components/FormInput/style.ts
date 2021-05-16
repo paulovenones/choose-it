@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 type InputLabelProps = {
   type: 'text' | 'textarea';
+  error: string;
 };
 
 export const InputLabel = styled.label<InputLabelProps>`
@@ -33,11 +34,20 @@ export const InputLabel = styled.label<InputLabelProps>`
     background: ${(props) => props.theme.colors.input};
 
     resize: none;
+
+    border: ${(props) =>
+      props.error ? `0.16rem solid ${props.theme.colors.red}` : ''};
   }
   input::placeholder {
     color: ${(props) => props.theme.colors.text.secondaryDark};
     font-size: 1.125rem;
     font-weight: 500;
+  }
+
+  p {
+    text-align: right;
+    color: ${(props) => props.theme.colors.red};
+    font-size: 0.75rem;
   }
 `;
 

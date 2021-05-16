@@ -12,6 +12,9 @@ const theme = {
     secondaryDark: '#E5250B',
     secondaryDarker: '#CC1804',
     input: '#E4E8ED',
+    buttonText: '#FFFFFF',
+    redLight: '#ea5757',
+    red: '#F51919',
     text: {
       primaryLight: '#434C59',
       primary: '#2E3743',
@@ -19,6 +22,18 @@ const theme = {
       secondaryLight: '#F0F3F7',
       secondary: '#E4E8ED',
       secondaryDark: '#C3CDD9',
+    },
+  },
+  sizes: {
+    buttons: {
+      small: {
+        height: '50px',
+        width: '80px',
+      },
+      large: {
+        height: '50px',
+        width: '300px',
+      },
     },
   },
 };
