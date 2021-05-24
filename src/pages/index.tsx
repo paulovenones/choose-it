@@ -122,9 +122,9 @@ const Home: React.FC = () => {
                               {values.options.length >= 3 && (
                                 <div className="mr-6">
                                   <Button
+                                    buttonStyle="attention"
                                     fontSize="large"
                                     size="small"
-                                    backgroundColor="red"
                                     type="button"
                                     onClick={() => arrayHelpers.remove(index)}
                                   >
@@ -136,9 +136,9 @@ const Home: React.FC = () => {
                               )}
                               {values.options.length <= 3 && (
                                 <Button
+                                  buttonStyle="primary"
                                   fontSize="large"
                                   size="small"
-                                  backgroundColor="orange"
                                   type="button"
                                   onClick={() => arrayHelpers.push('')}
                                 >
@@ -170,9 +170,9 @@ const Home: React.FC = () => {
                 />
                 <div className="flex justify-center mt-6 w-full my-0 mx-auto">
                   <Button
+                    buttonStyle="secondary"
                     fontSize="normal"
                     size="large"
-                    backgroundColor="blue"
                     type="submit"
                     onClick={() => handleSubmit}
                   >
