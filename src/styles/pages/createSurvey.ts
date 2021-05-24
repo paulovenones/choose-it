@@ -13,7 +13,7 @@ export const FormWrapper = styled.main`
   flex: 1;
 
   position: absolute;
-  width: 55.556vw;
+  width: 60vw;
   height: 618px;
   top: 80px;
   bottom: 0;

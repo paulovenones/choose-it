@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, InputLabel } from './style';
 
 interface IFormInputProps {
   inputName: string;
@@ -20,10 +19,12 @@ const FormInput: React.FC<IFormInputProps> = ({
   value,
   error,
 }) => (
-  <Container>
-    <InputLabel htmlFor={inputName} type={type} error={error}>
-      {labelText}
-      {error && <p>* {error}</p>}
+  <div>
+    <label htmlFor={inputName} className="text-base">
+      <div className="flex w-full justify-between items-end">
+        {labelText}
+        {error && <p className="text-right text-xs text-red-500">* {error}</p>}
+      </div>
       {type === 'text' ? (
         <input
           placeholder={placeholder}
@@ -32,6 +33,7 @@ const FormInput: React.FC<IFormInputProps> = ({
           type="text"
           onChange={onChange}
           value={value}
+          className="block text-base h-12 w-full rounded py-4 px-4 outline-none bg-gray-200 border-b-2 focus:border-blue-500"
         />
       ) : (
         <textarea
@@ -41,10 +43,11 @@ const FormInput: React.FC<IFormInputProps> = ({
           onChange={onChange}
           maxLength={200}
           value={value}
+          className="block text-base h-24 w-full rounded py-4 px-4 outline-none bg-gray-200 resize-none border-b-2 focus:border-blue-500"
         />
       )}
-    </InputLabel>
-  </Container>
+    </label>
+  </div>
 );
 
 export default FormInput;

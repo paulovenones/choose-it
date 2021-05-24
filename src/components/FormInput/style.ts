@@ -14,7 +14,7 @@ export const InputLabel = styled.label<InputLabelProps>`
 
   input,
   textarea {
-    display: block;
+    /* display: block; */
 
     font-size: 1.125rem;
 
@@ -49,9 +49,4 @@ export const InputLabel = styled.label<InputLabelProps>`
     color: ${(props) => props.theme.colors.red};
     font-size: 0.75rem;
   }
-`;
-
-export const Container = styled.div`
-  width: 100%;
-  text-align: left;
 `;

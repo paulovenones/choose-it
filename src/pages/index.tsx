@@ -7,14 +7,7 @@ import { FieldArray, Formik } from 'formik';
 import axios from '../../settings/axios';
 import FormBackgroundSvg from '../assets/form-background.svg';
 import { Button } from '../components/Button';
-import { SpacingBox } from '../components/Divider';
 import FormInput from '../components/FormInput';
-import {
-  Container,
-  Form,
-  FormWrapper,
-  InputAndButtonWrapper,
-} from '../styles/pages/createSurvey';
 
 const Home: React.FC = () => {
   const formInitialValues = { title: '', description: '', options: ['', ''] };
@@ -51,28 +44,30 @@ const Home: React.FC = () => {
         <title>Choose it!</title>
       </Head>
 
-      <main>
-        <Container>
-          <FormBackgroundSvg />
-          <FormWrapper>
-            <h1>crie uma votação</h1>
+      <main className="w-full h-full">
+        <FormBackgroundSvg />
+        <div className="flex flex-col items-center flex-1 absolute md:w-3/5 md:h-5/6 md:tp top-20 bottom-0 left-0 right-0 m-auto bg-white py-9 px-20 shadow rounded">
+          <h1 className="text-4xl text-blue-500">crie uma votação</h1>
 
-            <Formik
-              initialValues={formInitialValues}
-              onSubmit={(values) => onSubmit(values)}
-              validationSchema={formSchema}
-            >
-              {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                isSubmitting,
-              }) => (
-                <Form onSubmit={handleSubmit}>
-                  <SpacingBox height=".5rem" />
+          <Formik
+            initialValues={formInitialValues}
+            onSubmit={(values) => onSubmit(values)}
+            validationSchema={formSchema}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+            }) => (
+              <form
+                onSubmit={handleSubmit}
+                className="w-full mt-8 overflow-y-scroll no-scrollbar"
+              >
+                <div className="mb-4">
                   <FormInput
                     labelText="Título"
                     inputName="title"
@@ -83,7 +78,8 @@ const Home: React.FC = () => {
                       errors.title && touched.title ? errors.title : undefined
                     }
                   />
-                  <SpacingBox height="1.5rem" />
+                </div>
+                <div className="mb-4">
                   <FormInput
                     labelText="Descrição"
                     inputName="description"
@@ -96,14 +92,18 @@ const Home: React.FC = () => {
                         : undefined
                     }
                   />
-                  <SpacingBox height="1.5rem" />
-                  <FieldArray
-                    name="options"
-                    render={(arrayHelpers) => (
-                      <div>
-                        {values.options.map((_, index) => {
-                          return index + 1 === values.options.length ? (
-                            <InputAndButtonWrapper key={index}>
+                </div>
+                <FieldArray
+                  name="options"
+                  render={(arrayHelpers) => (
+                    <div>
+                      {values.options.map((_, index) => {
+                        return index + 1 === values.options.length ? (
+                          <div
+                            className="flex items-end justify-between w-3/4"
+                            key={index}
+                          >
+                            <div className="flex-1">
                               <FormInput
                                 labelText={`Opção ${index + 1}`}
                                 inputName={`options.${index}`}
@@ -117,68 +117,72 @@ const Home: React.FC = () => {
                                     : undefined
                                 }
                               />
+                            </div>
+                            <div className="flex ml-6">
                               {values.options.length >= 3 && (
-                                <Button
-                                  fontSize="large"
-                                  size="small"
-                                  backgroundColor="red"
-                                  type="button"
-                                  onClick={() => arrayHelpers.remove(index)}
-                                >
-                                  <CgTrash />
-                                </Button>
+                                <div className="mr-6">
+                                  <Button
+                                    fontSize="large"
+                                    size="small"
+                                    backgroundColor="red"
+                                    type="button"
+                                    onClick={() => arrayHelpers.remove(index)}
+                                  >
+                                    <div className="flex flex-col m-auto content-center items-center fw-full">
+                                      <CgTrash />
+                                    </div>
+                                  </Button>
+                                </div>
                               )}
                               {values.options.length <= 3 && (
                                 <Button
                                   fontSize="large"
                                   size="small"
-                                  backgroundColor="primary"
+                                  backgroundColor="orange"
                                   type="button"
                                   onClick={() => arrayHelpers.push('')}
                                 >
                                   +
                                 </Button>
                               )}
-                            </InputAndButtonWrapper>
-                          ) : (
-                            <div key={index}>
-                              <FormInput
-                                labelText={`Opção ${index + 1}`}
-                                inputName={`options.${index}`}
-                                value={values.options[index]}
-                                type="text"
-                                onChange={handleChange}
-                                error={
-                                  errors?.options?.[index] &&
-                                  touched?.options?.[index]
-                                    ? errors.options[index]
-                                    : undefined
-                                }
-                              />
-                              <SpacingBox height="1.5rem" />
                             </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  />
-
-                  <SpacingBox height="1.5rem" />
-
+                          </div>
+                        ) : (
+                          <div key={index} className="mb-4">
+                            <FormInput
+                              labelText={`Opção ${index + 1}`}
+                              inputName={`options.${index}`}
+                              value={values.options[index]}
+                              type="text"
+                              onChange={handleChange}
+                              error={
+                                errors?.options?.[index] &&
+                                touched?.options?.[index]
+                                  ? errors.options[index]
+                                  : undefined
+                              }
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                />
+                <div className="flex justify-center mt-6 w-full my-0 mx-auto">
                   <Button
                     fontSize="normal"
                     size="large"
-                    backgroundColor="secondary"
+                    backgroundColor="blue"
                     type="submit"
                     onClick={() => handleSubmit}
                   >
                     criar
                   </Button>
-                </Form>
-              )}
-            </Formik>
-          </FormWrapper>
-        </Container>
+                </div>
+              </form>
+            )}
+          </Formik>
+        </div>
       </main>
     </div>
   );
