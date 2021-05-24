@@ -39,14 +39,17 @@ const Home: React.FC = () => {
   });
 
   return (
-    <div>
+    <div className="w-screen">
       <Head>
         <title>Choose it!</title>
       </Head>
 
       <main className="w-full h-full">
-        <FormBackgroundSvg />
-        <div className="flex flex-col items-center flex-1 absolute md:w-3/5 md:h-5/6 md:tp top-20 bottom-0 left-0 right-0 m-auto bg-white py-9 px-20 shadow rounded">
+        <div className="hidden md:block">
+          <FormBackgroundSvg />
+        </div>
+
+        <div className="flex flex-col items-center flex-1 md:absolute md:w-3/5 md:h-5/6 md:tp top-20 bottom-0 left-0 right-0 m-auto bg-white py-9 md:px-20 px-4 md:shadow rounded">
           <h1 className="text-4xl text-blue-500">crie uma votação</h1>
 
           <Formik
@@ -100,7 +103,7 @@ const Home: React.FC = () => {
                       {values.options.map((_, index) => {
                         return index + 1 === values.options.length ? (
                           <div
-                            className="flex items-end justify-between w-3/4"
+                            className="flex items-end justify-between md:w-3/4"
                             key={index}
                           >
                             <div className="flex-1">
