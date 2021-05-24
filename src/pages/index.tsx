@@ -10,6 +10,8 @@ import { Button } from '../components/Button';
 import FormInput from '../components/FormInput';
 
 const Home: React.FC = () => {
+  const LIMIT_OPTIONS = 4;
+
   const formInitialValues = { title: '', description: '', options: ['', ''] };
 
   const onSubmit = useCallback(
@@ -35,7 +37,7 @@ const Home: React.FC = () => {
     options: Yup.array()
       .of(Yup.string().required('Required!'))
       .min(2, `Too little!`)
-      .max(4, 'Too much!'),
+      .max(LIMIT_OPTIONS, 'Too much!'),
   });
 
   return (
@@ -121,9 +123,14 @@ const Home: React.FC = () => {
                                 }
                               />
                             </div>
-                            <div className="flex ml-6">
-                              {values.options.length >= 3 && (
-                                <div className="mr-6">
+                            <div className="flex ml-4 md:ml-6">
+                              {values.options.length >= LIMIT_OPTIONS - 1 && (
+                                <div
+                                  className={
+                                    values.options.length <=
+                                      LIMIT_OPTIONS - 1 && 'md:mr-6 mr-4'
+                                  }
+                                >
                                   <Button
                                     buttonStyle="attention"
                                     fontSize="large"
@@ -131,13 +138,13 @@ const Home: React.FC = () => {
                                     type="button"
                                     onClick={() => arrayHelpers.remove(index)}
                                   >
-                                    <div className="flex flex-col m-auto content-center items-center fw-full">
+                                    <div className="flex flex-col content-center items-center fw-full">
                                       <CgTrash />
                                     </div>
                                   </Button>
                                 </div>
                               )}
-                              {values.options.length <= 3 && (
+                              {values.options.length <= LIMIT_OPTIONS - 1 && (
                                 <Button
                                   buttonStyle="primary"
                                   fontSize="large"
