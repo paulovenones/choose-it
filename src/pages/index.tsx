@@ -47,7 +47,10 @@ const Home: React.FC = () => {
       </Head>
 
       <main className="w-full h-full">
-        <div className="hidden md:block">
+        <div
+          className="hidden md:block"
+          style={{ width: 'inherit', height: 'inherit' }}
+        >
           <FormBackgroundSvg />
         </div>
 
